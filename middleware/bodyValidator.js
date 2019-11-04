@@ -26,7 +26,7 @@ module.exports = (check = [], allRequired = true) => (req, res, next) => {
     if (check.length) {
         const backEndVerify = []; // Is our backend code typed properly ?
         const missing = [];       // Is our req.body accurate ?
-        res.locals.valid = {};    // Setting up our valid object to send off
+        if (!res.locals.valid) res.locals.valid = {};    // Setting up our valid object to send off
         check.forEach(prop => {
             if (typeof prop != "string") {
                 backEndVerify.push(prop);
